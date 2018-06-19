@@ -6,22 +6,26 @@ public class SQLConnectionTest
 {
 	public static void main(String[] args)
 	{
-		DishesInterface.createDish("Corn Dog", true);
-		DishesInterface.createDish("Taquito", true);
-		DishesInterface.createDish("Burger", true);
-		DishesInterface.createDish("BBQ", true);
-		DishesInterface.createDish("Burrito", true);
-		DishesInterface.createDish("Burrito", false);
+		DishesInterface.createDish("Corn Dog", "items", true, true);
+		DishesInterface.createDish("Taquito", "items", true, true);
+		DishesInterface.createDish("Burger", "items",true, true);
+		DishesInterface.createDish("BBQ", "lbs.", true, true);
+		DishesInterface.createDish("Burrito", "items", true, true);
+		DishesInterface.createDish("Burrito", "items", true, false);
 		
 		System.out.println(DishesInterface.getDishNames(true));
 		System.out.println(DishesInterface.getDishNames(false));
 		
 		try
 		{
-			DishInstance toTest1 = new DishInstance("Corn Dog", DishInstance.DATE_FORMATTER.parse("20010101"),true,true);
-			DishInstance toTest2 = new DishInstance("Corn Dog", DishInstance.DATE_FORMATTER.parse("20010102"),true,true);
-			DishInstance toTest3 = new DishInstance("Hamburger", DishInstance.DATE_FORMATTER.parse("20010101"),true,true);
-			DishInstance toTest4 = new DishInstance("Burrito", DishInstance.DATE_FORMATTER.parse("20010101"),true,true);
+			DishInstance toTest1 = new DishInstance("Corn Dog", DishInstance.DATE_FORMATTER.parse("20180618"),true,true);
+			DishInstance toTest2 = new DishInstance("Corn Dog", DishInstance.DATE_FORMATTER.parse("20180618"),true,true);
+			DishInstance toTest3 = new DishInstance("Burger", DishInstance.DATE_FORMATTER.parse("20180618"),true,true);
+			DishInstance toTest4 = new DishInstance("Burrito", DishInstance.DATE_FORMATTER.parse("20180618"),true,true);
+			DishInstance toTest5 = new DishInstance("Corn Dog", DishInstance.DATE_FORMATTER.parse("20180617"),true,true);
+			DishInstance toTest6 = new DishInstance("Corn Dog", DishInstance.DATE_FORMATTER.parse("20180617"),true,true);
+			DishInstance toTest7 = new DishInstance("Burger", DishInstance.DATE_FORMATTER.parse("20180617"),true,true);
+			DishInstance toTest8 = new DishInstance("Burrito", DishInstance.DATE_FORMATTER.parse("20180617"),true,true);
 			
 			toTest1.setAmountPrepped(86);
 			toTest1.setAmountLeft(1);
@@ -38,6 +42,21 @@ public class SQLConnectionTest
 			toTest3.setTempStart(0);
 			toTest3.setTempEnd(0);
 			
+			toTest5.setAmountPrepped(86);
+			toTest5.setAmountLeft(1);
+			toTest5.setTempStart(98.6);
+			toTest5.setTempEnd(200.1);
+			
+			toTest6.setAmountPrepped(4);
+			toTest6.setAmountLeft(5);
+			toTest6.setTempStart(6);
+			toTest6.setTempEnd(7);
+			
+			toTest7.setAmountPrepped(0);
+			toTest7.setAmountLeft(0);
+			toTest7.setTempStart(0);
+			toTest7.setTempEnd(0);
+			
 			System.out.println(toTest1.dishName);
 			System.out.println(toTest1.getDateMadeString());
 			System.out.println(toTest1.getAmountPrepped());
@@ -46,6 +65,10 @@ public class SQLConnectionTest
 			System.out.println(toTest1.getTempEnd());
 			
 			System.out.println(toTest4.dishName);
+			System.out.println(toTest5.dishName);
+			System.out.println(toTest6.dishName);
+			System.out.println(toTest7.dishName);
+			System.out.println(toTest8.dishName);
 			
 			//DataInterface.updateDish(toTest1, "AMOUNT_LEFT", 2);
 			

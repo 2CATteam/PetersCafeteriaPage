@@ -9,6 +9,8 @@ public class DishInstance implements Comparable<DishInstance>
 	public final String dishName;
 	private final Date dateMade;
 	public final boolean isLunch;
+
+
 	public static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("yyyyMMdd");
 	private Integer amountPrepped;
 	private Integer amountLeft;
@@ -28,13 +30,49 @@ public class DishInstance implements Comparable<DishInstance>
 	
 	public DishInstance(String dishName, String dateMade, boolean isLunch, boolean isNew) throws ParseException
 	{
-		this.dishName = dishName;
-		this.dateMade = DATE_FORMATTER.parse(dateMade);
-		this.isLunch = isLunch;
-		if (isNew)
+		this(dishName, DATE_FORMATTER.parse(dateMade), isLunch, isNew);
+	}
+	
+	public String getUnits()
+	{
+		return DishesInterface.getUnits(this);
+	}
+	
+	public boolean isMain()
+	{
+		return DishesInterface.isMain(this);
+	}
+	
+	public int numDefined()
+	{
+		int countDefined = 0;
+		if (this.getAmountPrepped() != null)
 		{
-			DataInterface.insertNewDish(this);
+			++countDefined;
 		}
+		if (this.getAmountLeft() != null)
+		{
+			++countDefined;
+		}
+		if (this.getTempStart() != null)
+		{
+			++countDefined;
+		}
+		if (this.getTempEnd() != null)
+		{
+			++countDefined;
+		}
+		return countDefined;
+	}
+	
+	public DishInstance lastServedWith()
+	{
+		return DataInterface.servedWith(this, isLunch);
+	}
+	
+	public DishInstance lastServed()
+	{
+		return DataInterface.lastServed(this, isLunch);
 	}
 
 	/**
@@ -116,6 +154,22 @@ public class DishInstance implements Comparable<DishInstance>
 	{
 		this.tempEnd = tempEnd;
 		DataInterface.updateDish(this, "TEMP_END", tempEnd);
+	}
+	
+	/**
+	 * @return the dishName
+	 */
+	public String getDishName()
+	{
+		return dishName;
+	}
+
+	/**
+	 * @return the dateFormatter
+	 */
+	public static SimpleDateFormat getDateFormatter()
+	{
+		return DATE_FORMATTER;
 	}
 	
 	/* (non-Javadoc)

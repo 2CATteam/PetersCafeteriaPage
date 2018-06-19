@@ -266,16 +266,16 @@ public class DataInterface
 		return null;
 	}
 
-	public static ArrayList<DishInstance> servedWith(DishInstance toCompare, boolean isLunch)
+	public static DishInstance servedWith(DishInstance toCompare, boolean isLunch)
 	{
 		ArrayList<DishInstance> toReturn = queryDishesOn(toCompare.getDateMade(), isLunch);
 		for (int index = 0; index < toReturn.size(); ++index)
 		{
-			if (toReturn.get(index).dishName.equals(toCompare.dishName))
+			if (toReturn.get(index).isMain() && toReturn.get(index).dishName.equals(toCompare.dishName))
 			{
-				toReturn.remove(index);
+				return toReturn.get(index);
 			}
 		}
-		return toReturn;
+		return null;
 	}
 }

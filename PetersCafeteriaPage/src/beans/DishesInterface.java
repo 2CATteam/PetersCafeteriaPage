@@ -36,7 +36,7 @@ public class DishesInterface
 		return storedConnection;
 	}
 
-	public static void createDish(String dishName, boolean isLunch)
+	public static void createDish(String dishName, String units, boolean isMain, boolean isLunch)
 	{
 		String tableName;
 		if (isLunch)
@@ -49,16 +49,18 @@ public class DishesInterface
 		}
 		try
 		{
-			String sql = "INSERT INTO " + tableName + " (DISH_NAME) VALUES(?)";
+			String sql = "INSERT INTO " + tableName + " (DISH_NAME, IS_MAIN, UNITS) VALUES(?, ?, ?)";
 			PreparedStatement toExecute = getConnection().prepareStatement(sql);
 			toExecute.setString(1, dishName);
+			toExecute.setBoolean(2, isMain);
+			toExecute.setString(3, units);
 			toExecute.executeUpdate();
 		}
 		catch (SQLException e)
 		{
 			System.out.println(
 				"Unable to insert new dish! It's possible that this dish already exists; dish information below:");
-			System.out.println(dishName + ", isLunch: " + isLunch);
+			System.out.println(dishName + ", " + units + ", isLunch: " + isLunch);
 			e.printStackTrace();
 		}
 	}
@@ -96,5 +98,87 @@ public class DishesInterface
 			System.out.println("Returning empty set");
 			return new ArrayList<String>();
 		}
+	}
+	
+	public static boolean isMain(String dishName, boolean isLunch)
+	{
+		String tableName;
+		if (isLunch)
+		{
+			tableName = "lunch_dishes";
+		}
+		else
+		{
+			tableName = "breakfast_dishes";
+		}
+		try
+		{
+			String sql = "SELECT * FROM " + tableName + " WHERE DISH_NAME = ?";
+			PreparedStatement toExecute = getConnection().prepareStatement(sql);
+			toExecute.setString(1, dishName);
+			ResultSet rs = toExecute.executeQuery();
+			if (rs.next())
+			{
+				return rs.getBoolean("IS_MAIN");
+			}
+			else
+			{
+				throw new SQLException("Could not find value in DB");
+			}
+		}
+		catch (SQLException e)
+		{
+			System.out.println(
+				"Unable to identify dish in DB. Query information below:");
+			System.out.println(dishName + ", isLunch: " + isLunch);
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public static boolean isMain(DishInstance toTest)
+	{
+		return isMain(toTest.dishName, toTest.isLunch);
+	}
+	
+	public static String getUnits(String dishName, boolean isLunch)
+	{
+		String tableName;
+		if (isLunch)
+		{
+			tableName = "lunch_dishes";
+		}
+		else
+		{
+			tableName = "breakfast_dishes";
+		}
+		try
+		{
+			String sql = "SELECT * FROM " + tableName + " WHERE DISH_NAME = ?";
+			PreparedStatement toExecute = getConnection().prepareStatement(sql);
+			toExecute.setString(1, dishName);
+			ResultSet rs = toExecute.executeQuery();
+			if (rs.next())
+			{
+				return rs.getString("UNITS");
+			}
+			else
+			{
+				throw new SQLException("Could not find value in DB");
+			}
+		}
+		catch (SQLException e)
+		{
+			System.out.println(
+				"Unable to identify dish in DB. Query information below:");
+			System.out.println(dishName + ", isLunch: " + isLunch);
+			e.printStackTrace();
+			return "units";
+		}
+	}
+	
+	public static String getUnits(DishInstance toTest)
+	{
+		return getUnits(toTest.dishName, toTest.isLunch);
 	}
 }

@@ -1,0 +1,180 @@
+@charset "ISO-8859-1";
+
+#header {
+	position: absolute;
+	height: 15%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background: #ff6060;
+	border: 2px solid #000000;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.headerAligner {
+	height: 50%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
+
+#menuLabel {
+	border: 2px solid #000000;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	position: absolute;
+	height: 6%;
+	width: 15%;
+	top: 12%;
+	left: 23%;
+	background: #FFFFFF;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#productionLabel {
+	border: 2px solid #000000;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	position: absolute;
+	height: 6%;
+	width: 15%;
+	top: 12%;
+	left: 67.5%;
+	background: #FFFFFF;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+h3 {
+	display: inline-block;
+	vertical-align: middle;
+	line-height: normal;
+}
+
+#leftButtons {
+	position: absolute;
+	height: 85%;
+	width: 10%;
+	top: 15%;
+	left: 1%;
+}
+
+.leftButton {
+	height: 17%;
+	width: 100%;
+}
+
+.leftSpacer {
+	height: 12%;
+	width: 100%;
+}
+
+#leftPanel {
+	position: absolute;
+	height: 82%;
+	width: 34%;
+	top: 18%;
+	left: 15.5%;
+	background: #00FFFF;
+}
+
+.menuDivider {
+	position: relative;
+	height: 2.5%;
+	width: 100%;
+	background: #FF0000;
+	height: 2.5%;
+}
+
+.dishDivider {
+	position: relative;
+	height: 15%;
+	width: 100%;
+	height: 15%;
+}
+
+.menuBox {
+	border: 2px solid #000000;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	height: 100%;
+	width: 66%;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.mainMarker {
+	border: 2px #000000;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	position: absolute;
+	top: 0;
+	left: 67%;
+	height: 100%;
+	width: 34%;
+	height: 100%;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#rightPanel {
+	position: absolute;
+	height: 82%;
+	width: 36.5%;
+	top: 18%;
+	left: 57%;
+	background: #00FF00;
+}
+
+.redBox {
+	height: 100%;
+	width: 68.5%;
+	background: #f8cecc;
+	border: 2px solid #b85450;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.yellowBox {
+	height: 100%;
+	width: 68.5%;
+	background: #fff2cc;
+	border: 2px solid #d6b656;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.greenBox {
+	height: 100%;
+	width: 68.5%;
+	background: #d5e8d4;
+	border: 2px solid #82b366;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.markButton {
+	position: absolute;
+	top: 0;
+	left: 68.5%;
+	height: 100%;
+	width: 31.5%;
+}
