@@ -9,19 +9,24 @@
 %>
 <div id="leftPanel">
 	<c:forEach
-		items="${dishList}"
+		items="${sessionScope.dishList}"
 		var="dish"
 	>
 		<div class="menuDivider"></div>
 		<div class="dishDivider">
 			<div class="menuBox">
-				<h5>${dish.dishName}</h5>
+				<h3>${dish.dishName}</h3>
 				<p>Last Made/Left/Used (${dish.getUnits()}): ${dish.lastServed().getAmountPrepped()}/${dish.lastServed().getAmountLeft()}/${dish.lastServed().getAmountPrepped()-dish.lastServed().getAmountLeft()}</p>
 				<p>Last Start/End Temp(°): ${dish.lastServed().getTempStart()}/${dish.lastServed().getTempEnd()}</p>
 			</div>
 			<c:if test="${dish.isMain() && (dish.lastServedWith() != null)}">
 				<div class="mainMarker">
-					<p>Last Served with ${dish.lastServedWith().dishName} on ${shorthandFormatter.format(dish.lastServedWith().dateMade)}</p>
+					<c:if test="${!dish.lastServed().getDateMadeString().equals(dish.getDateMadeString())}">
+						<p>Last Served with <br>${dish.lastServedWith().dishName} on ${shorthandFormatter.format(dish.lastServedWith().dateMade)}</p>
+					</c:if>
+					<c:if test="${dish.lastServed().getDateMadeString().equals(dish.getDateMadeString())}">
+						<p>Dish has never been served before</p>
+					</c:if>
 				</div>
 			</c:if>
 		</div>

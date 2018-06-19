@@ -37,7 +37,7 @@ public class MainViewServlet extends HttpServlet
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		if (request.getAttribute("dateToUse") == null)
+		if (request.getSession().getAttribute("dateToUse") == null)
 		{
 			Date toAdd = new Date();
 			try
@@ -48,24 +48,26 @@ public class MainViewServlet extends HttpServlet
 			{
 				e.printStackTrace();
 			}
-			request.setAttribute("dateToUse", toAdd);
+			request.getSession().setAttribute("dateToUse", toAdd);
 		}
-		if (request.getAttribute("isLunch") == null)
+		if (request.getSession().getAttribute("isLunch") == null)
 		{
-			request.setAttribute("isLunch", new Boolean(true));
+			request.getSession().setAttribute("isLunch", new Boolean(true));
 		}
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("MMMMMMMMM dd, yyyy");
-		request.setAttribute("dateToShow", dateFormatter.format((Date) request.getAttribute("dateToUse")));
-		request.setAttribute("dishList", DataInterface.queryDishesOn((Date) request.getAttribute("dateToUse"),
-			(Boolean) request.getAttribute("isLunch")));
-		request.setAttribute("shorthandFormatter", new SimpleDateFormat("MM/dd/yy"));
-		if ((Boolean) request.getAttribute("isLunch"))
+		request.getSession().setAttribute("dateToShow",
+			dateFormatter.format((Date) request.getSession().getAttribute("dateToUse")));
+		request.getSession().setAttribute("dishList",
+			DataInterface.queryDishesOn((Date) request.getSession().getAttribute("dateToUse"),
+				(Boolean) request.getSession().getAttribute("isLunch")));
+		request.getSession().setAttribute("shorthandFormatter", new SimpleDateFormat("MM/dd/yy"));
+		if ((Boolean) request.getSession().getAttribute("isLunch"))
 		{
-			request.setAttribute("meal", "Lunch");
+			request.getSession().setAttribute("meal", "Lunch");
 		}
 		else
 		{
-			request.setAttribute("meal", "Breakfast");
+			request.getSession().setAttribute("meal", "Breakfast");
 		}
 		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/mainView.jsp");
 		dispatcher.forward(request, response);

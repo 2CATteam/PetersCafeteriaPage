@@ -8,14 +8,19 @@
 	prefix="c"
 %>
 <div id="rightPanel">
+	<form
+		action="${pageContext.request.contextPath}/EditDish"
+		method="post"
+		id="editDishForm"
+	></form>
 	<c:forEach
-		items="${dishList}"
+		items="${sessionScope.dishList}"
 		var="dish"
 	>
 		<div class="menuDivider"></div>
 		<div class="dishDivider">
 			<c:choose>
-				<c:when test="${(dish.numDefined() == 0) || (dish == 1)}">
+				<c:when test="${(dish.numDefined() == 0) || (dish.numDefined() == 1)}">
 					<c:set
 						var="classToUse"
 						value="redBox"
@@ -35,7 +40,7 @@
 				</c:otherwise>
 			</c:choose>
 			<div class="${classToUse}">
-				<h5>${dish.dishName}</h5>
+				<h3>${dish.dishName}</h3>
 				<p>
 					<c:if test="${dish.getAmountPrepped() != null}">
 					Made ${dish.getAmountPrepped()} ${dish.getUnits()}, 
@@ -53,7 +58,13 @@
 				</c:if>
 				</p>
 			</div>
-			<button class="markButton">Mark Values</button>
+			<button
+				class="markButton"
+				type="submit"
+				form="editDishForm"
+				name="dishToEdit"
+				value="${dish.dishName}"
+			>Mark Values</button>
 		</div>
 	</c:forEach>
 </div>

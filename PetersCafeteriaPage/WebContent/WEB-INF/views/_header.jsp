@@ -5,10 +5,10 @@
 %>
 <div id="header">
 	<div class="headerAligner">
-		<h1>${dateToShow}</h1>
+		<h1>${sessionScope.dateToShow}</h1>
 	</div>
 	<div class="headerAligner">
-		<h2>${meal}</h2>
+		<h2>${sessionScope.meal}</h2>
 	</div>
 	
 </div>

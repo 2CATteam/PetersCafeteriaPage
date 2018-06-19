@@ -1,11 +1,16 @@
 package beans;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DishInstance implements Comparable<DishInstance>
+public class DishInstance implements Comparable<DishInstance>, Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3780090849779812589L;
 	public final String dishName;
 	private final Date dateMade;
 	public final boolean isLunch;
@@ -67,7 +72,7 @@ public class DishInstance implements Comparable<DishInstance>
 	
 	public DishInstance lastServedWith()
 	{
-		return DataInterface.servedWith(this, isLunch);
+		return DataInterface.servedWith(this.lastServed(), isLunch);
 	}
 	
 	public DishInstance lastServed()
@@ -186,7 +191,23 @@ public class DishInstance implements Comparable<DishInstance>
 	@Override
 	public int compareTo(DishInstance toCompare)
 	{
-		return toCompare.getDateMade().compareTo(this.getDateMade());
+		if (this.isMain())
+		{
+			if (toCompare.isMain())
+			{
+				return toCompare.getDateMade().compareTo(this.getDateMade());
+			}
+			return -1;
+		}
+		else
+		{
+			if (toCompare.isMain())
+			{
+				return 1;
+			}
+			return toCompare.getDateMade().compareTo(this.getDateMade());
+		}
+		
 	}
 	
 }

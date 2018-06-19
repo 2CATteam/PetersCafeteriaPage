@@ -60,7 +60,34 @@ public class DishesInterface
 		{
 			System.out.println(
 				"Unable to insert new dish! It's possible that this dish already exists; dish information below:");
-			System.out.println(dishName + ", " + units + ", isLunch: " + isLunch);
+			System.out.println(dishName + ", " + units + ", isMain: " + isMain + ", isLunch: " + isLunch);
+			e.printStackTrace();
+		}
+	}
+	
+	public static void removeDish(String dishName, boolean isLunch)
+	{
+		String tableName;
+		if (isLunch)
+		{
+			tableName = "lunch_dishes";
+		}
+		else
+		{
+			tableName = "breakfast_dishes";
+		}
+		try
+		{
+			String sql = "DELETE FROM " + tableName + " WHERE DISH_NAME = ?";
+			PreparedStatement toExecute = getConnection().prepareStatement(sql);
+			toExecute.setString(1, dishName);
+			toExecute.executeUpdate();
+		}
+		catch (SQLException e)
+		{
+			System.out.println(
+				"Unable to delete dish! Dish information below:");
+			System.out.println(dishName + ", isLunch: " + isLunch);
 			e.printStackTrace();
 		}
 	}

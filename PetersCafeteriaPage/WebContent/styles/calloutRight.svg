@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   preserveAspectRatio="xMinyMin meet"
+   viewBox="0 0 669 357"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg2"
+   content="&lt;mxfile userAgent=&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36&quot; version=&quot;8.8.1&quot; editor=&quot;www.draw.io&quot; type=&quot;device&quot;&gt;&lt;diagram&gt;jVNNb4MwDP01XCdKVNoe167bDptUqYedU+JCtIBRSEu7Xz+HGCirKo0L9nv+0rMTiU15ebOyLj5RgYmSWF0i8RIlySxNY/p55BqQZZoEILdacdAI7PUPMMh5+UkraCaBDtE4XU/BDKsKMjfBpLXYTsOOaKZda5nDHbDPpLlHv7RyRUCTOI5H4h10XvStB+Ygs+/c4qnihlEijt0X6FL2xTi+KaTC9gYS20hsLKILVnnZgPHi9rqFvNcH7DC4hcr9J4H3cpbmBP3E3Vzu2otBI9beJHkMnqjqui20g30tMw+3dAKEFa405M3IrMHqEhzYMWk3QusjVo5XLmLyLTrpNFbkr7zfBG7u7RobzVz8NF8QcpDNHZt0dCq6YiQ9KJ5E2mx/U00anftSGYnTjWLkAcxu7DEQZ7BO0+wffwJKrZTXZQh45pIOvQgsJnFwebiQ2bBmej+AJIu9UggnJMslnwa/ndlKzAPQjqco5mnAipsrTNMFPwE+/3yoPl4AGXwEvTseW8fdPGmx/QU=&lt;/diagram&gt;&lt;/mxfile&gt;"
+   version="1.1"
+   height="357px"
+   width="669px">
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4" />
+  <g
+     id="g6"
+     transform="matrix(-1,0,0,1,667.87993,0.5)">
+    <path
+       style="fill:#ffffff;stroke:#000000;stroke-miterlimit:10"
+       id="path8"
+       pointer-events="none"
+       transform="matrix(0,1,-1,0,512.5,-155.5)"
+       stroke-miterlimit="10"
+       d="m 156,153.5 0,-283.5 q 0,-25 25,-25 l 306,0 q 25,0 25,25 l 0,567 q 0,25 -25,25 l -53.08,0 q -25,0 -37.43,21.69 L 380.28,512 368.74,484.99 Q 358.92,462 333.92,462 L 181,462 q -25,0 -25,-25 z" />
+  </g>
+</svg>

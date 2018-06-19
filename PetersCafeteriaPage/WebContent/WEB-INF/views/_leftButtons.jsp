@@ -3,11 +3,38 @@
 	contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
 %>
+<form
+	id="editLink"
+	action="${pageContext.request.contextPath}/EditDB"
+	method="post"
+></form>
+<form
+	id="menuLink"
+	action="${pageContext.request.contextPath}/EditMenu"
+	method="post"
+></form>
+<form
+	id="dayLink"
+	action="${pageContext.request.contextPath}/ChangeDayBox"
+	method="post"
+></form>
 <div id="leftButtons">
 	<div class="leftSpacer"></div>
-	<button class="leftButton">Edit Dishes in Database</button>
+	<button
+		class="leftButton"
+		type="submit"
+		form="editLink"
+	>Edit Dishes in Database</button>
 	<div class="leftSpacer"></div>
-	<button class="leftButton">Edit Menu</button>
+	<button
+		class="leftButton"
+		type="submit"
+		form="menuLink"
+	>Edit Menu</button>
 	<div class="leftSpacer"></div>
-	<button class="leftButton">Change day and meal</button>
+	<button
+		class="leftButton"
+		type="submit"
+		form="dayLink"
+	>Change day and meal</button>
 </div>

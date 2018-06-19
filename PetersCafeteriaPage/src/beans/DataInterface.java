@@ -122,6 +122,33 @@ public class DataInterface
 			e.printStackTrace();
 		}
 	}
+	
+	public static void deleteDish(DishInstance toDelete)
+	{
+		String tableName;
+		if (toDelete.isLunch)
+		{
+			tableName = "lunch_history";
+		}
+		else
+		{
+			tableName = "breakfast_history";
+		}
+		try
+		{
+			PreparedStatement toExecute = getConnection()
+				.prepareStatement("DELETE FROM " + tableName + " WHERE DATE = ? AND DISH = ?");
+			toExecute.setString(1, toDelete.getDateMadeString());
+			toExecute.setString(2, toDelete.dishName);
+			toExecute.executeUpdate();
+		}
+		catch (SQLException e)
+		{
+			System.out.println("Unable to delete Dish! Dish information below:");
+			System.out.println(toDelete.toString());
+			e.printStackTrace();
+		}
+	}
 
 	public static ArrayList<DishInstance> queryDishesOn(Date onDate, boolean isLunch)
 	{
@@ -263,7 +290,7 @@ public class DataInterface
 				return toTest;
 			}
 		}
-		return null;
+		return toCompare;
 	}
 
 	public static DishInstance servedWith(DishInstance toCompare, boolean isLunch)
@@ -271,7 +298,7 @@ public class DataInterface
 		ArrayList<DishInstance> toReturn = queryDishesOn(toCompare.getDateMade(), isLunch);
 		for (int index = 0; index < toReturn.size(); ++index)
 		{
-			if (toReturn.get(index).isMain() && toReturn.get(index).dishName.equals(toCompare.dishName))
+			if (toReturn.get(index).isMain() && !toReturn.get(index).dishName.equals(toCompare.dishName))
 			{
 				return toReturn.get(index);
 			}
