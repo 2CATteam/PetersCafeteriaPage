@@ -25,6 +25,10 @@ public class Connector
 		{
 			haveConnection = false;
 		}
+		catch (NullPointerException e)
+		{
+			haveConnection = false;
+		}
 		if (haveConnection)
 		{
 			String hostName = "us-cdbr-iron-east-04.cleardb.net";
