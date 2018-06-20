@@ -15,29 +15,30 @@ public class DataInterface
 {
 	public static Connection storedConnection = null;
 
+	@SuppressWarnings("unused")
 	public static Connection getConnection() throws SQLException
+	// mysql://b7b7124cc8043b:1f0108f2@us-cdbr-iron-east-04.cleardb.net/heroku_aca051f453e3673?reconnect=true
 	{
 		if (storedConnection == null)
 		{
-			//mysql://b7b7124cc8043b:1f0108f2@us-cdbr-iron-east-04.cleardb.net/heroku_aca051f453e3673?reconnect=true
 			String hostName = "us-cdbr-iron-east-04.cleardb.net";
 			String dbName = "heroku_aca051f453e3673";
 			String userName = "b7b7124cc8043b";
 			String password = "1f0108f2";
-			String connectionURL = "jdbc:mysql://b7b7124cc8043b:1f0108f2@us-cdbr-iron-east-04.cleardb.net/heroku_aca051f453e3673?reconnect=true";
+			String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName;
 
 			try
 			{
-				Class.forName("com.mysql.jdbc.Driver");
+				Connection conn = DriverManager.getConnection(connectionURL, userName, password);
+				storedConnection = conn;
+				return storedConnection;
 			}
-			catch (ClassNotFoundException e)
+			catch (SQLException e)
 			{
+				System.out.println("Unable to get connection... That kinda sucks, huh?");
 				e.printStackTrace();
+				return null;
 			}
-
-			Connection conn = DriverManager.getConnection(connectionURL, userName, password);
-			conn.setAutoCommit(false);
-			storedConnection = conn;
 		}
 		return storedConnection;
 	}
@@ -124,7 +125,7 @@ public class DataInterface
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void deleteDish(DishInstance toDelete)
 	{
 		String tableName;

@@ -11,6 +11,7 @@ public class DishesInterface
 {
 	public static Connection storedConnection = null;
 
+	@SuppressWarnings("unused")
 	public static Connection getConnection() throws SQLException
 	{
 		if (storedConnection == null)
@@ -19,20 +20,20 @@ public class DishesInterface
 			String dbName = "heroku_aca051f453e3673";
 			String userName = "b7b7124cc8043b";
 			String password = "1f0108f2";
-			String connectionURL = "jdbc:mysql://b7b7124cc8043b:1f0108f2@us-cdbr-iron-east-04.cleardb.net/heroku_aca051f453e3673?reconnect=true";
+			String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName;
 
 			try
 			{
-				Class.forName("com.mysql.jdbc.Driver");
+				Connection conn = DriverManager.getConnection(connectionURL, userName, password);
+				storedConnection = conn;
+				return storedConnection;
 			}
-			catch (ClassNotFoundException e)
+			catch (SQLException e)
 			{
+				System.out.println("Unable to get connection... That kinda sucks, huh?");
 				e.printStackTrace();
+				return null;
 			}
-
-			Connection conn = DriverManager.getConnection(connectionURL, userName, password);
-			conn.setAutoCommit(false);
-			storedConnection = conn;
 		}
 		return storedConnection;
 	}
@@ -65,7 +66,7 @@ public class DishesInterface
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void removeDish(String dishName, boolean isLunch)
 	{
 		String tableName;
@@ -86,8 +87,7 @@ public class DishesInterface
 		}
 		catch (SQLException e)
 		{
-			System.out.println(
-				"Unable to delete dish! Dish information below:");
+			System.out.println("Unable to delete dish! Dish information below:");
 			System.out.println(dishName + ", isLunch: " + isLunch);
 			e.printStackTrace();
 		}
@@ -127,7 +127,7 @@ public class DishesInterface
 			return new ArrayList<String>();
 		}
 	}
-	
+
 	public static boolean isMain(String dishName, boolean isLunch)
 	{
 		String tableName;
@@ -156,19 +156,18 @@ public class DishesInterface
 		}
 		catch (SQLException e)
 		{
-			System.out.println(
-				"Unable to identify dish in DB. Query information below:");
+			System.out.println("Unable to identify dish in DB. Query information below:");
 			System.out.println(dishName + ", isLunch: " + isLunch);
 			e.printStackTrace();
 			return false;
 		}
 	}
-	
+
 	public static boolean isMain(DishInstance toTest)
 	{
 		return isMain(toTest.dishName, toTest.isLunch);
 	}
-	
+
 	public static String getUnits(String dishName, boolean isLunch)
 	{
 		String tableName;
@@ -197,14 +196,13 @@ public class DishesInterface
 		}
 		catch (SQLException e)
 		{
-			System.out.println(
-				"Unable to identify dish in DB. Query information below:");
+			System.out.println("Unable to identify dish in DB. Query information below:");
 			System.out.println(dishName + ", isLunch: " + isLunch);
 			e.printStackTrace();
 			return "units";
 		}
 	}
-	
+
 	public static String getUnits(DishInstance toTest)
 	{
 		return getUnits(toTest.dishName, toTest.isLunch);

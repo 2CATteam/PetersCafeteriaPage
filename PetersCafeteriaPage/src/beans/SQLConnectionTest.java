@@ -72,8 +72,8 @@ public class SQLConnectionTest
 			
 			//DataInterface.updateDish(toTest1, "AMOUNT_LEFT", 2);
 			
-			System.out.println(DataInterface.queryDishesOn("20010102", true));
-			System.out.println(DataInterface.queryDishesBefore("20010102", true));
+			System.out.println(DataInterface.queryDishesOn("20180617", true));
+			System.out.println(DataInterface.queryDishesBefore("20180618", true));
 			System.out.println(DataInterface.servedWith(toTest1, true));
 			System.out.println(DataInterface.lastServed(toTest2, true));
 		}
