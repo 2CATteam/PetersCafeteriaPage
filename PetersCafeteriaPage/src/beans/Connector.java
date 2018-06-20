@@ -29,6 +29,10 @@ public class Connector
 		{
 			haveConnection = false;
 		}
+		if (storedConnection == null)
+		{
+			System.out.println("No connection yet");
+		}
 		if (!haveConnection)
 		{
 			String hostName = "us-cdbr-iron-east-04.cleardb.net";
@@ -49,6 +53,10 @@ public class Connector
 				e.printStackTrace();
 				return null;
 			}
+		}
+		if (storedConnection == null)
+		{
+			System.out.println("Still no connection");
 		}
 		return storedConnection;
 	}

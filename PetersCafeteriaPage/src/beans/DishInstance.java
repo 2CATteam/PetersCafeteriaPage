@@ -22,6 +22,11 @@ public class DishInstance implements Comparable<DishInstance>, Serializable
 	private Double tempStart;
 	private Double tempEnd;
 	
+	private Boolean isMain;
+	private String units;
+	private DishInstance lastServedWith;
+	private DishInstance lastServed;
+	
 	public DishInstance(String dishName, Date dateMade, boolean isLunch, boolean isNew)
 	{
 		this.dishName = dishName;
@@ -40,12 +45,20 @@ public class DishInstance implements Comparable<DishInstance>, Serializable
 	
 	public String getUnits()
 	{
-		return DishesInterface.getUnits(this);
+		if (units == null)
+		{
+			units = DishesInterface.getUnits(this);
+		}
+		return units;
 	}
 	
 	public boolean isMain()
 	{
-		return DishesInterface.isMain(this);
+		if (isMain == null)
+		{
+			isMain = DishesInterface.isMain(this);
+		}
+		return isMain;
 	}
 	
 	public int numDefined()
@@ -72,12 +85,20 @@ public class DishInstance implements Comparable<DishInstance>, Serializable
 	
 	public DishInstance lastServedWith()
 	{
-		return DataInterface.servedWith(this.lastServed(), isLunch);
+		if (lastServedWith == null)
+		{
+			lastServedWith = DataInterface.servedWith(this.lastServed(), isLunch);
+		}
+		return lastServedWith;
 	}
 	
 	public DishInstance lastServed()
 	{
-		return DataInterface.lastServed(this, isLunch);
+		if (lastServed == null)
+		{
+			lastServed = DataInterface.lastServed(this.lastServed(), isLunch);
+		}
+		return lastServed;
 	}
 
 	/**

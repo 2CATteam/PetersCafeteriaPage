@@ -32,8 +32,8 @@ public class EditMenuServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().setAttribute("dishesInDB", DishesInterface.getDishNames((Boolean) request.getSession().getAttribute("isLunch")));
-		request.getSession().setAttribute("dishList", DataInterface.queryDishesOn((Date) request.getSession().getAttribute("dateToUse"),
-			(Boolean) request.getSession().getAttribute("isLunch")));
+		//request.getSession().setAttribute("dishList", DataInterface.queryDishesOn((Date) request.getSession().getAttribute("dateToUse"),
+			//(Boolean) request.getSession().getAttribute("isLunch")));
 		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/editMenuView.jsp");
 		dispatcher.forward(request, response);
 	}
