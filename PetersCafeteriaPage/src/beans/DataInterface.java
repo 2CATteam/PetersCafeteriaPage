@@ -2,8 +2,6 @@ package beans;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,35 +11,6 @@ import java.util.Date;
 
 public class DataInterface
 {
-	public static Connection storedConnection = null;
-
-	@SuppressWarnings("unused")
-	public static Connection getConnection() throws SQLException
-	// mysql://b7b7124cc8043b:1f0108f2@us-cdbr-iron-east-04.cleardb.net/heroku_aca051f453e3673?reconnect=true
-	{
-		if (storedConnection == null)
-		{
-			String hostName = "us-cdbr-iron-east-04.cleardb.net";
-			String dbName = "heroku_aca051f453e3673";
-			String userName = "b7b7124cc8043b";
-			String password = "1f0108f2";
-			String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName;
-
-			try
-			{
-				Connection conn = DriverManager.getConnection(connectionURL, userName, password);
-				storedConnection = conn;
-				return storedConnection;
-			}
-			catch (SQLException e)
-			{
-				System.out.println("Unable to get connection... That kinda sucks, huh?");
-				e.printStackTrace();
-				return null;
-			}
-		}
-		return storedConnection;
-	}
 
 	public static void insertNewDish(DishInstance toInsert)
 	{
@@ -56,7 +25,7 @@ public class DataInterface
 		}
 		try
 		{
-			PreparedStatement toExecute = getConnection()
+			PreparedStatement toExecute = Connector.getConnection()
 				.prepareStatement("INSERT INTO " + tableName + " (DATE,DISH) VALUES(?, ?);");
 			toExecute.setString(1, toInsert.getDateMadeString());
 			toExecute.setString(2, toInsert.dishName);
@@ -83,7 +52,7 @@ public class DataInterface
 		}
 		try
 		{
-			PreparedStatement toExecute = getConnection()
+			PreparedStatement toExecute = Connector.getConnection()
 				.prepareStatement("UPDATE " + tableName + " SET " + toSet + " = ? WHERE DATE = ? AND DISH = ?");
 			toExecute.setBigDecimal(1, new BigDecimal(toAdd, new MathContext(4)));
 			toExecute.setString(2, toUpdate.getDateMadeString());
@@ -111,7 +80,7 @@ public class DataInterface
 		}
 		try
 		{
-			PreparedStatement toExecute = getConnection()
+			PreparedStatement toExecute = Connector.getConnection()
 				.prepareStatement("UPDATE " + tableName + " SET " + toSet + " = ? WHERE DATE = ? AND DISH = ?");
 			toExecute.setInt(1, toAdd);
 			toExecute.setString(2, toUpdate.getDateMadeString());
@@ -139,7 +108,7 @@ public class DataInterface
 		}
 		try
 		{
-			PreparedStatement toExecute = getConnection()
+			PreparedStatement toExecute = Connector.getConnection()
 				.prepareStatement("DELETE FROM " + tableName + " WHERE DATE = ? AND DISH = ?");
 			toExecute.setString(1, toDelete.getDateMadeString());
 			toExecute.setString(2, toDelete.dishName);
@@ -172,7 +141,7 @@ public class DataInterface
 		}
 		try
 		{
-			PreparedStatement toExecute = getConnection()
+			PreparedStatement toExecute = Connector.getConnection()
 				.prepareStatement("SELECT * FROM " + tableName + " WHERE DATE = ?");
 			toExecute.setString(1, onDate);
 			ResultSet rs = toExecute.executeQuery();
@@ -237,7 +206,7 @@ public class DataInterface
 		}
 		try
 		{
-			PreparedStatement toExecute = getConnection()
+			PreparedStatement toExecute = Connector.getConnection()
 				.prepareStatement("SELECT * FROM " + tableName + " WHERE DATE < ?");
 			toExecute.setString(1, onDate);
 			ResultSet rs = toExecute.executeQuery();

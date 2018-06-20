@@ -1,7 +1,5 @@
 package beans;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,34 +7,6 @@ import java.util.ArrayList;
 
 public class DishesInterface
 {
-	public static Connection storedConnection = null;
-
-	@SuppressWarnings("unused")
-	public static Connection getConnection() throws SQLException
-	{
-		if (storedConnection == null)
-		{
-			String hostName = "us-cdbr-iron-east-04.cleardb.net";
-			String dbName = "heroku_aca051f453e3673";
-			String userName = "b7b7124cc8043b";
-			String password = "1f0108f2";
-			String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName;
-
-			try
-			{
-				Connection conn = DriverManager.getConnection(connectionURL, userName, password);
-				storedConnection = conn;
-				return storedConnection;
-			}
-			catch (SQLException e)
-			{
-				System.out.println("Unable to get connection... That kinda sucks, huh?");
-				e.printStackTrace();
-				return null;
-			}
-		}
-		return storedConnection;
-	}
 
 	public static void createDish(String dishName, String units, boolean isMain, boolean isLunch)
 	{
@@ -52,7 +22,7 @@ public class DishesInterface
 		try
 		{
 			String sql = "INSERT INTO " + tableName + " (DISH_NAME, IS_MAIN, UNITS) VALUES(?, ?, ?)";
-			PreparedStatement toExecute = getConnection().prepareStatement(sql);
+			PreparedStatement toExecute = Connector.getConnection().prepareStatement(sql);
 			toExecute.setString(1, dishName);
 			toExecute.setBoolean(2, isMain);
 			toExecute.setString(3, units);
@@ -81,7 +51,7 @@ public class DishesInterface
 		try
 		{
 			String sql = "DELETE FROM " + tableName + " WHERE DISH_NAME = ?";
-			PreparedStatement toExecute = getConnection().prepareStatement(sql);
+			PreparedStatement toExecute = Connector.getConnection().prepareStatement(sql);
 			toExecute.setString(1, dishName);
 			toExecute.executeUpdate();
 		}
@@ -106,7 +76,7 @@ public class DishesInterface
 		}
 		try
 		{
-			PreparedStatement toExecute = getConnection().prepareStatement("SELECT * FROM " + tableName);
+			PreparedStatement toExecute = Connector.getConnection().prepareStatement("SELECT * FROM " + tableName);
 			ResultSet rs = toExecute.executeQuery();
 			ArrayList<String> toReturn = new ArrayList<String>();
 			boolean shouldContinue = rs.isBeforeFirst();
@@ -142,7 +112,7 @@ public class DishesInterface
 		try
 		{
 			String sql = "SELECT * FROM " + tableName + " WHERE DISH_NAME = ?";
-			PreparedStatement toExecute = getConnection().prepareStatement(sql);
+			PreparedStatement toExecute = Connector.getConnection().prepareStatement(sql);
 			toExecute.setString(1, dishName);
 			ResultSet rs = toExecute.executeQuery();
 			if (rs.next())
@@ -182,7 +152,7 @@ public class DishesInterface
 		try
 		{
 			String sql = "SELECT * FROM " + tableName + " WHERE DISH_NAME = ?";
-			PreparedStatement toExecute = getConnection().prepareStatement(sql);
+			PreparedStatement toExecute = Connector.getConnection().prepareStatement(sql);
 			toExecute.setString(1, dishName);
 			ResultSet rs = toExecute.executeQuery();
 			if (rs.next())
