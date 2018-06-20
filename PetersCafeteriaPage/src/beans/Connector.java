@@ -29,7 +29,7 @@ public class Connector
 		{
 			haveConnection = false;
 		}
-		if (haveConnection)
+		if (!haveConnection)
 		{
 			String hostName = "us-cdbr-iron-east-04.cleardb.net";
 			String dbName = "heroku_aca051f453e3673";
