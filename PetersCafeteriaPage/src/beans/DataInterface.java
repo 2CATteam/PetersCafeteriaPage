@@ -19,11 +19,12 @@ public class DataInterface
 	{
 		if (storedConnection == null)
 		{
-			String hostName = "localhost";
-			String dbName = "peterscafeteria";
-			String userName = "root";
-			String password = "2theDish!";
-			String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName;
+			//mysql://b7b7124cc8043b:1f0108f2@us-cdbr-iron-east-04.cleardb.net/heroku_aca051f453e3673?reconnect=true
+			String hostName = "us-cdbr-iron-east-04.cleardb.net";
+			String dbName = "heroku_aca051f453e3673";
+			String userName = "b7b7124cc8043b";
+			String password = "1f0108f2";
+			String connectionURL = "jdbc:mysql://b7b7124cc8043b:1f0108f2@us-cdbr-iron-east-04.cleardb.net/heroku_aca051f453e3673?reconnect=true";
 
 			try
 			{
@@ -35,6 +36,7 @@ public class DataInterface
 			}
 
 			Connection conn = DriverManager.getConnection(connectionURL, userName, password);
+			conn.setAutoCommit(false);
 			storedConnection = conn;
 		}
 		return storedConnection;

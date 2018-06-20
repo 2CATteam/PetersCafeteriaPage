@@ -22,113 +22,119 @@
 >
 </head>
 <body>
-	<jsp:include page="_header.jsp"></jsp:include>
-	<jsp:include page="_leftButtons.jsp"></jsp:include>
-	<jsp:include page="_menuPanel.jsp"></jsp:include>
-	<jsp:include page="_productionPanel.jsp"></jsp:include>
-	<form
-		action="${pageContext.request.contextPath}/Main"
-		method="post"
-	>
-		<button
-			class="backoutButton"
-			type="submit"
-		></button>
-		<button
-			style="position: absolute; height: 12.3%; width: 11.5%; top: ${20 + 14.4 * positionScalar}%; left: 82%;"
-			type="submit"
-		>Mark Values</button>
-	</form>
-	<form
-		action="${pageContext.request.contextPath}/MarkDish"
-		method="post"
-		id="addDishForm"
-	></form>
-	<img
-		style="position: absolute; top: ${7 + 14.4 * positionScalar}%; left: 52%; height: 30%; width: 30%;"
-		src="${pageContext.request.contextPath }/styles/calloutRight.svg"
-	/>
-	<div style="position: absolute; top: ${11 + 14.4 * positionScalar}%; height: 22%; width: 25%; left: 53.5%;">
-		<div class=markupLine>
-			<div class="markupLabel">Amount Prepped (${dishToEdit.getUnits()}):</div>
-			<div class="numberInput">
-				<input
-					style="width: 100%"
-					type="number"
-					form="addDishForm"
-					name="updateAmountPrepped"
-					value="${dishToEdit.getAmountPrepped()}"
-				>
-			</div>
-			<div class="submitEdits">
-				<button
-					type="submit"
-					form="addDishForm"
-					name="dishNameToEdit"
-					value="${dishToEdit.dishName}"
-				>Mark</button>
-			</div>
+	<div id="viewWindow">
+		<jsp:include page="_header.jsp"></jsp:include>
+		<jsp:include page="_leftButtons.jsp"></jsp:include>
+		<jsp:include page="_menuPanel.jsp"></jsp:include>
+		<jsp:include page="_productionPanel.jsp"></jsp:include>
+		<form
+			action="${pageContext.request.contextPath}/Main"
+			method="post"
+		>
+			<button
+				class="backoutButton"
+				type="submit"
+			></button>
+			<button
+				style="position: absolute; height: 12.3%; width: 11.5%; top: ${20 + 14.4 * positionScalar}%; left: 82%;"
+				type="submit"
+			>Mark Values</button>
+		</form>
+		<form
+			action="${pageContext.request.contextPath}/MarkDish"
+			method="post"
+			id="addDishForm"
+		></form>
+		<div id="frameContainer">
+			<img
+				style="position: absolute; bottom: ${75 - 14.4 * positionScalar}%; right: 18%; height: 296px;"
+				src="${pageContext.request.contextPath }/styles/calloutRight.svg"
+			/>
 		</div>
-		<div class=markupLine>
-			<div class="markupLabel">Amount Left (${dishToEdit.getUnits()}):</div>
-			<div class="numberInput">
-				<input
-					style="width: 100%"
-					type="number"
-					form="addDishForm"
-					name="updateAmountLeft"
-					value="${dishToEdit.getAmountLeft()}"
-				>
-			</div>
-			<div class="submitEdits">
-				<button
-					type="submit"
-					form="addDishForm"
-					name="dishNameToEdit"
-					value="${dishToEdit.dishName}"
-				>Mark</button>
-			</div>
-		</div>
-		<div class=markupLine>
-			<div class="markupLabel">Temp Start (°):</div>
-			<div class="numberInput">
-				<input
-					style="width: 100%"
-					type="number"
-					step="0.1"
-					form="addDishForm"
-					name="updateTempStart"
-					value="${dishToEdit.getTempStart()}"
-				>
-			</div>
-			<div class="submitEdits">
-				<button
-					type="submit"
-					form="addDishForm"
-					name="dishNameToEdit"
-					value="${dishToEdit.dishName}"
-				>Mark</button>
-			</div>
-		</div>
-		<div class=markupLine>
-			<div class="markupLabel">Temp End (°):</div>
-			<div class="numberInput">
-				<input
-					style="width: 100%"
-					type="number"
-					step="0.1"
-					form="addDishForm"
-					name="updateTempEnd"
-					value="${dishToEdit.getTempEnd()}"
-				>
-			</div>
-			<div class="submitEdits">
-				<button
-					type="submit"
-					form="addDishForm"
-					name="dishNameToEdit"
-					value="${dishToEdit.dishName}"
-				>Mark</button>
+		<div style="position: absolute; top: ${25 + 14.4 * positionScalar}%; height: 85px; width: 545px; right: 18%;">
+			<div style="position: absolute; height: 250px; width: 495px; bottom: 0; right: 50px;">
+				<div class=markupLine>
+					<div class="markupLabel">Amount Prepped (${dishToEdit.getUnits()}):</div>
+					<div class="numberInput">
+						<input
+							style="width: 100%"
+							type="number"
+							form="addDishForm"
+							name="updateAmountPrepped"
+							value="${dishToEdit.getAmountPrepped()}"
+						>
+					</div>
+					<div class="submitEdits">
+						<button
+							type="submit"
+							form="addDishForm"
+							name="dishNameToEdit"
+							value="${dishToEdit.dishName}"
+						>Mark</button>
+					</div>
+				</div>
+				<div class=markupLine>
+					<div class="markupLabel">Amount Left (${dishToEdit.getUnits()}):</div>
+					<div class="numberInput">
+						<input
+							style="width: 100%"
+							type="number"
+							form="addDishForm"
+							name="updateAmountLeft"
+							value="${dishToEdit.getAmountLeft()}"
+						>
+					</div>
+					<div class="submitEdits">
+						<button
+							type="submit"
+							form="addDishForm"
+							name="dishNameToEdit"
+							value="${dishToEdit.dishName}"
+						>Mark</button>
+					</div>
+				</div>
+				<div class=markupLine>
+					<div class="markupLabel">Temp Start (°):</div>
+					<div class="numberInput">
+						<input
+							style="width: 100%"
+							type="number"
+							step="0.1"
+							form="addDishForm"
+							name="updateTempStart"
+							value="${dishToEdit.getTempStart()}"
+						>
+					</div>
+					<div class="submitEdits">
+						<button
+							type="submit"
+							form="addDishForm"
+							name="dishNameToEdit"
+							value="${dishToEdit.dishName}"
+						>Mark</button>
+					</div>
+				</div>
+				<div class=markupLine>
+					<div class="markupLabel">Temp End (°):</div>
+					<div class="numberInput">
+						<input
+							style="width: 100%"
+							type="number"
+							step="0.1"
+							form="addDishForm"
+							name="updateTempEnd"
+							value="${dishToEdit.getTempEnd()}"
+						>
+					</div>
+					<div class="submitEdits">
+						<button
+							type="submit"
+							form="addDishForm"
+							name="dishNameToEdit"
+							value="${dishToEdit.dishName}"
+						>Mark</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

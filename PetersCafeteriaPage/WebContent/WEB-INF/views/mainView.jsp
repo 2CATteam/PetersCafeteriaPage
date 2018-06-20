@@ -22,9 +22,11 @@
 >
 </head>
 <body>
+<div id="viewWindow">
 	<jsp:include page="_header.jsp"></jsp:include>
 	<jsp:include page="_leftButtons.jsp"></jsp:include>
 	<jsp:include page="_menuPanel.jsp"></jsp:include>
 	<jsp:include page="_productionPanel.jsp"></jsp:include>
+</div>
 </body>
 </html>
