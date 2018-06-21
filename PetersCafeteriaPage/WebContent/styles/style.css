@@ -513,8 +513,8 @@ h3 {
 
 #editMenuDiv {
 	position: absolute;
-	top: 44.5%;
-	height: 75px;
+	top: 58%;
+	height: 85px;
 	width: 25%;
 	left: 11%;
 }
@@ -536,9 +536,9 @@ h3 {
 
 #changeDayDiv {
 	position: absolute;
-	top: 83%;
+	top: 82%;
 	left: 11%;
-	height: 75px;
+	height: 85px;
 	width: 545px;
 }
 

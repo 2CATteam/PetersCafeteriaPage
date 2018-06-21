@@ -36,7 +36,7 @@
 				type="submit"
 			></button>
 			<button
-				style="position: absolute; height: 9%; width: 11.5%; top: ${19 + 10 * positionScalar}%; left: 82%;"
+				style="position: absolute; height: 9%; width: 11.5%; top: ${19 + 9.8 * positionScalar}%; left: 82%;"
 				type="submit"
 			>Mark Values</button>
 		</form>
@@ -47,11 +47,11 @@
 		></form>
 		<div id="frameContainer">
 			<img
-				style="position: absolute; bottom: ${76 - 10 * positionScalar}%; right: 18%; height: 296px;"
+				style="position: absolute; bottom: ${76 - 9.8 * positionScalar}%; right: 18%; height: 296px;"
 				src="${pageContext.request.contextPath }/styles/calloutRight.svg"
 			/>
 		</div>
-		<div style="position: absolute; top: ${24 + 10 * positionScalar}%; height: 85px; width: 545px; right: 18%;">
+		<div style="position: absolute; top: ${24 + 9.8 * positionScalar}%; height: 85px; width: 545px; right: 18%;">
 			<div style="position: absolute; height: 250px; width: 495px; bottom: 0; right: 50px;">
 				<div class=markupLine>
 					<div class="markupLabel">Amount Prepped (${dishToEdit.getUnits()}):</div>
