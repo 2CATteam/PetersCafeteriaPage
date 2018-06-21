@@ -5,6 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.mysql.cj.exceptions.CJCommunicationsException;
+import com.mysql.cj.jdbc.exceptions.CommunicationsException;
+
 public class DishesInterface
 {
 
@@ -27,6 +30,10 @@ public class DishesInterface
 			toExecute.setBoolean(2, isMain);
 			toExecute.setString(3, units);
 			toExecute.executeUpdate();
+		}
+		catch (CommunicationsException | CJCommunicationsException e)
+		{
+			createDish(dishName, units, isMain, isLunch);
 		}
 		catch (SQLException e)
 		{
@@ -54,6 +61,10 @@ public class DishesInterface
 			PreparedStatement toExecute = Connector.getConnection().prepareStatement(sql);
 			toExecute.setString(1, dishName);
 			toExecute.executeUpdate();
+		}
+		catch (CommunicationsException | CJCommunicationsException e)
+		{
+			removeDish(dishName, isLunch);
 		}
 		catch (SQLException e)
 		{
@@ -87,6 +98,10 @@ public class DishesInterface
 				shouldContinue = rs.next();
 			}
 			return toReturn;
+		}
+		catch (CommunicationsException | CJCommunicationsException e)
+		{
+			return getDishNames(isLunch);
 		}
 		catch (SQLException e)
 		{
@@ -123,6 +138,10 @@ public class DishesInterface
 			{
 				throw new SQLException("Could not find value in DB");
 			}
+		}
+		catch (CommunicationsException | CJCommunicationsException e)
+		{
+			return isMain(dishName, isLunch);
 		}
 		catch (SQLException e)
 		{
@@ -163,6 +182,10 @@ public class DishesInterface
 			{
 				throw new SQLException("Could not find value in DB");
 			}
+		}
+		catch (CommunicationsException | CJCommunicationsException e)
+		{
+			return getUnits(dishName, isLunch);
 		}
 		catch (SQLException e)
 		{

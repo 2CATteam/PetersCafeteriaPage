@@ -96,7 +96,7 @@ public class DishInstance implements Comparable<DishInstance>, Serializable
 	{
 		if (lastServed == null)
 		{
-			lastServed = DataInterface.lastServed(this.lastServed(), isLunch);
+			lastServed = DataInterface.lastServed(this, isLunch);
 		}
 		return lastServed;
 	}

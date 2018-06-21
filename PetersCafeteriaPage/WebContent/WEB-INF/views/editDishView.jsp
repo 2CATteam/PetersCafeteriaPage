@@ -1,7 +1,7 @@
 <%@ page
 	language="java"
 	contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"
+	pageEncoding="UTF-8"
 %>
 <%@ taglib
 	uri="http://java.sun.com/jsp/jstl/core"
@@ -36,7 +36,7 @@
 				type="submit"
 			></button>
 			<button
-				style="position: absolute; height: 12.3%; width: 11.5%; top: ${20 + 14.4 * positionScalar}%; left: 82%;"
+				style="position: absolute; height: 9%; width: 11.5%; top: ${19 + 10 * positionScalar}%; left: 82%;"
 				type="submit"
 			>Mark Values</button>
 		</form>
@@ -47,11 +47,11 @@
 		></form>
 		<div id="frameContainer">
 			<img
-				style="position: absolute; bottom: ${75 - 14.4 * positionScalar}%; right: 18%; height: 296px;"
+				style="position: absolute; bottom: ${76 - 10 * positionScalar}%; right: 18%; height: 296px;"
 				src="${pageContext.request.contextPath }/styles/calloutRight.svg"
 			/>
 		</div>
-		<div style="position: absolute; top: ${25 + 14.4 * positionScalar}%; height: 85px; width: 545px; right: 18%;">
+		<div style="position: absolute; top: ${24 + 10 * positionScalar}%; height: 85px; width: 545px; right: 18%;">
 			<div style="position: absolute; height: 250px; width: 495px; bottom: 0; right: 50px;">
 				<div class=markupLine>
 					<div class="markupLabel">Amount Prepped (${dishToEdit.getUnits()}):</div>
@@ -94,7 +94,7 @@
 					</div>
 				</div>
 				<div class=markupLine>
-					<div class="markupLabel">Temp Start (°):</div>
+					<div class="markupLabel">Temp Start (Â°):</div>
 					<div class="numberInput">
 						<input
 							style="width: 100%"
@@ -115,7 +115,7 @@
 					</div>
 				</div>
 				<div class=markupLine>
-					<div class="markupLabel">Temp End (°):</div>
+					<div class="markupLabel">Temp End (Â°):</div>
 					<div class="numberInput">
 						<input
 							style="width: 100%"

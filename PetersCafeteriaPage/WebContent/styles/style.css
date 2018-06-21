@@ -514,7 +514,7 @@ h3 {
 #editMenuDiv {
 	position: absolute;
 	top: 44.5%;
-	height: 22%;
+	height: 75px;
 	width: 25%;
 	left: 11%;
 }
@@ -536,9 +536,9 @@ h3 {
 
 #changeDayDiv {
 	position: absolute;
-	top: 85%;
+	top: 83%;
 	left: 11%;
-	height: 55px;
+	height: 75px;
 	width: 545px;
 }
 
@@ -596,14 +596,6 @@ h3 {
 	width: 10%;
 	top: 75%;
 	left: 1%;
-}
-
-#EditDishDiv {
-	position: absolute;
-	top: 68%;
-	height: 22%;
-	width: 25%;
-	left: 15%;
 }
 
 .markupLine {

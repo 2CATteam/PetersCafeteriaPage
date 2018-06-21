@@ -1,7 +1,7 @@
 <%@ page
 	language="java"
 	contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"
+	pageEncoding="UTF-8"
 %>
 <%@ taglib
 	uri="http://java.sun.com/jsp/jstl/core"
@@ -51,10 +51,10 @@
 				</p>
 				<p>
 					<c:if test="${dish.getTempStart() != null}">
-					Start at ${dish.getTempStart()}°, 
+					Start at ${dish.getTempStart()}Â°, 
 				</c:if>
 					<c:if test="${dish.getTempEnd() != null}">
-					${dish.getTempEnd()}° end
+					${dish.getTempEnd()}Â° end
 				</c:if>
 				</p>
 			</div>

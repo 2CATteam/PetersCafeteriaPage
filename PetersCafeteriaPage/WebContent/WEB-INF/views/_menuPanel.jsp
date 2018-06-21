@@ -1,7 +1,7 @@
 <%@ page
 	language="java"
 	contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"
+	pageEncoding="UTF-8"
 %>
 <%@ taglib
 	uri="http://java.sun.com/jsp/jstl/core"
@@ -17,7 +17,7 @@
 			<div class="menuBox">
 				<h3>${dish.dishName}</h3>
 				<p>Last Made/Left/Used (${dish.getUnits()}): ${dish.lastServed().getAmountPrepped()}/${dish.lastServed().getAmountLeft()}/${dish.lastServed().getAmountPrepped()-dish.lastServed().getAmountLeft()}</p>
-				<p>Last Start/End Temp(°): ${dish.lastServed().getTempStart()}/${dish.lastServed().getTempEnd()}</p>
+				<p>Last Start/End Temp(Â°): ${dish.lastServed().getTempStart()}/${dish.lastServed().getTempEnd()}</p>
 			</div>
 			<c:if test="${dish.isMain() && (dish.lastServedWith() != null)}">
 				<div class="mainMarker">

@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
+import com.mysql.cj.exceptions.CJCommunicationsException;
+import com.mysql.cj.jdbc.exceptions.CommunicationsException;
+
 public class DataInterface
 {
 
@@ -30,6 +33,10 @@ public class DataInterface
 			toExecute.setString(1, toInsert.getDateMadeString());
 			toExecute.setString(2, toInsert.dishName);
 			toExecute.executeUpdate();
+		}
+		catch (CommunicationsException|CJCommunicationsException e)
+		{
+			insertNewDish(toInsert);
 		}
 		catch (SQLException e)
 		{
@@ -59,6 +66,10 @@ public class DataInterface
 			toExecute.setString(3, toUpdate.dishName);
 			toExecute.executeUpdate();
 		}
+		catch (CommunicationsException|CJCommunicationsException e)
+		{
+			updateDish(toUpdate, toSet, toAdd);
+		}
 		catch (SQLException e)
 		{
 			System.out.println("Unable to update Dish! Dish information below:");
@@ -87,6 +98,10 @@ public class DataInterface
 			toExecute.setString(3, toUpdate.dishName);
 			toExecute.executeUpdate();
 		}
+		catch (CommunicationsException|CJCommunicationsException e)
+		{
+			updateDish(toUpdate, toSet, toAdd);
+		}
 		catch (SQLException e)
 		{
 			System.out.println("Unable to update Dish! Dish information below:");
@@ -113,6 +128,10 @@ public class DataInterface
 			toExecute.setString(1, toDelete.getDateMadeString());
 			toExecute.setString(2, toDelete.dishName);
 			toExecute.executeUpdate();
+		}
+		catch (CommunicationsException|CJCommunicationsException e)
+		{
+			deleteDish(toDelete);
 		}
 		catch (SQLException e)
 		{
@@ -175,7 +194,10 @@ public class DataInterface
 			}
 			Collections.sort(toReturn);
 			return toReturn;
-
+		}
+		catch (CommunicationsException|CJCommunicationsException e)
+		{
+			return queryDishesOn(onDate, isLunch);
 		}
 		catch (SQLException e)
 		{
@@ -193,7 +215,7 @@ public class DataInterface
 		return queryDishesBefore(dateString, isLunch);
 	}
 
-	public static ArrayList<DishInstance> queryDishesBefore(String onDate, boolean isLunch)
+	public static ArrayList<DishInstance> queryDishesBefore(String beforeDate, boolean isLunch)
 	{
 		String tableName;
 		if (isLunch)
@@ -208,7 +230,7 @@ public class DataInterface
 		{
 			PreparedStatement toExecute = Connector.getConnection()
 				.prepareStatement("SELECT * FROM " + tableName + " WHERE DATE < ?");
-			toExecute.setString(1, onDate);
+			toExecute.setString(1, beforeDate);
 			ResultSet rs = toExecute.executeQuery();
 			ArrayList<DishInstance> toReturn = new ArrayList<>();
 			DishInstance toAdd;
@@ -242,10 +264,14 @@ public class DataInterface
 			return toReturn;
 
 		}
+		catch (CommunicationsException|CJCommunicationsException e)
+		{
+			return queryDishesBefore(beforeDate, isLunch);
+		}
 		catch (SQLException e)
 		{
 			System.out.println("Unable to find Dish due to error! Query information below:");
-			System.out.println(onDate + ", isLunch: " + isLunch);
+			System.out.println(beforeDate + ", isLunch: " + isLunch);
 			System.out.println("Returning empty ArrayList");
 			e.printStackTrace();
 			return new ArrayList<DishInstance>();
